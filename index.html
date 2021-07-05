@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <link rel="stylesheet" href="./style.css" >
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <body>
+        <div class="header">
+            PERSONAGENS
+        </div>
+        <div id="api" class="container">
+            <div class="row ">
+                <div class="col-lg-6 listapersonagens">
+                    <h6>
+                        LISTA DE PERSONAGENS
+                    </h6>
+                    <ul class="bloco" v-on:click="mostrarSelecionado( character.char_id )" v-for="character in characters.data" >
+                        <div>
+                            <li>
+                                <b>Nome:</b> {{ character.name }} 
+                            </li>
+                            <li v-if="character.birthday !== 'Unknown' ">
+                                <b>Aniversário:</b> {{ character.birthday }}
+                            </li>
+                            <li>
+                                <b>Ocupação:</b>
+                                <ul class="list" v-for="ocupacao in character.occupation">
+                                    <li >
+                                        {{ocupacao}}
+                                    </li>
+                                </ul>        
+                            </li>
+                            <li>
+                                <b>Status:</b> {{ character.status }}
+                            </li>
+                        </div>
+                        <div>
+                            <li>
+                                <b>Apelido: </b> {{ character.nickname }}
+                            </li>
+                            <li>
+                                <b>Categoria:</b> {{ character.category }}
+                            </li>
+                        </div>
+                    </ul>
+                </div>
+                <div class="col-lg-6">              
+                    <div v-if="mostrar" id="show">
+                        <h6 >
+                            PERSONAGEM SELECIONADO
+                        </h6>
+                        <ul class="bloco">
+                            <img v-bind:src="imgUrl" alt="Imagem do Personagem">
+                            <div>
+                                <li>
+                                    <b>Nome:</b> {{ personagem.name }}
+                                </li>
+                                <li v-if="personagem.birthday !== 'Unknown' ">
+                                    <b>Aniversário:</b> {{ personagem.birthday }}
+                                <li>
+                                    <b>Ocupação:</b> 
+                                    <ul class="list">
+                                        <li v-for="item in personagem.occupation">
+                                            {{item}}
+                                        </li>
+                                    </ul>  
+                                </li>
+                                <li>
+                                    <b>Status:</b> {{ personagem.status }}
+                                </li>
+                            </div>
+                            <div>
+                                <li>
+                                    <b>Apelido: </b> {{ personagem.nickname }}
+                                </li>
+                                <li>
+                                    <b>Categoria:</b> {{ personagem.category }}
+                                </li>
+                            </div>
+                        </ul>
+                    </div>   
+                </div>
+            </div>  
+        </div> 
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./vue.js"></script>
+</html>
